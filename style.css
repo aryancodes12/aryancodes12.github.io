@@ -211,109 +211,168 @@ nav .right a span {
 /* SECTION 2: skills */
 
 .skills-section {
-    padding: 0 50px;
+    padding: 50px 50px;
     margin-bottom: 100px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .skills-section h2 {
     text-align: center;
     font-size: 35px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.skills-section .text {
+    text-align: center;
+    color: var(--soft-text);
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .skills-section .core-skills {
-    border: 1px solid var(--link-color);
+    margin-bottom: 50px;
+    padding: 30px;
+    background: rgba(74, 118, 238, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(74, 118, 238, 0.15);
+    transition: all 0.3s ease;
+}
+
+.skills-section .core-skills:hover {
+    background: rgba(74, 118, 238, 0.06);
+    border-color: rgba(74, 118, 238, 0.25);
+    box-shadow: 0 10px 30px rgba(74, 118, 238, 0.08);
 }
 
 .skills-section .core-skills h4 {
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--link-color);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
-
 
 .skills-section .cells {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 12px;
 }
 
 .skills-section .cells .cell {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    width: 150px;
-    padding: 10px 20px;
-    margin: 10px;
-    border: 1.5px solid var(--text-color);
-    border-radius: 5px;
-    transition: .1s;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(74, 118, 238, 0.3);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .skills-section .cells .cell span {
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
 }
 
 .skills-section .cells .cell:hover {
-    box-shadow: 3px 4px 4px black;
+    background: var(--surface-color);
+    border-color: var(--link-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(74, 118, 238, 0.15);
 }
 
 /* SECTION 3: projects */
 
 .project-section {
-    padding: 0 50px;
+    padding: 50px 50px;
     margin-bottom: 100px;
-    background-color: rgb(184, 229, 184);
+    background: linear-gradient(135deg, rgba(74, 118, 238, 0.05) 0%, rgba(156, 163, 255, 0.03) 100%);
 }
 
 .project-section h2 {
     text-align: center;
     font-size: 35px;
+    margin-bottom: 20px;
+    color: var(--text-color);
 }
 
 .project-section .cells {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 20px;
-    
+    gap: 24px;
+    max-width: 1200px;
+    margin: 40px auto 0;
 }
 
 .project-section .cells .cell {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 200px;
-    padding: 10px 20px;
-    margin: 10px;
-    border: 1.5 solid #d3d3d3;
-    border-radius: 5px;
-    border: 1px solid var(--link-color);
-    transition: .1s;
+    width: 320px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
 }
 
 .project-section .cells .cell:hover {
-    box-shadow: 3px 4px 4px black;
-}
-.project-section .cells .cell span {
-    font-size: 18px;
-    margin: 0 0 12px;
-    text-align: center;
-    font-weight: 600;
-    
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 16px 40px rgba(31, 38, 135, 0.15);
 }
 
-.project-section .cells .cell p {
+.project-section .cells .cell .project-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.project-section .cells .cell .project-description {
     font-size: 14px;
-    width: 100%; 
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--link-color);
+    color: var(--soft-text);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex-grow: 1;
+}
+
+.project-section .cells .cell .project-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: rgba(74, 118, 238, 0.9);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    margin-top: auto;
+    border: 1px solid rgba(74, 118, 238, 0.3);
+}
+
+.project-section .cells .cell .project-link:hover {
+    background: rgba(74, 118, 238, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 118, 238, 0.3);
+    border-color: rgba(74, 118, 238, 0.6);
 }
 
 /* Section 4: contact */
@@ -390,7 +449,20 @@ nav .right a span {
     }
 
     .project-section {
-        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .project-section h2 {
+        font-size: 28px;
+    }
+
+    .project-section .cells {
+        gap: 20px;
+    }
+
+    .project-section .cells .cell {
+        width: 100%;
+        max-width: 340px;
     }
 
     .project-section .group {
@@ -399,6 +471,28 @@ nav .right a span {
 
     .contact-section .group {
         flex-direction: column;
+    }
+
+    .skills-section {
+        padding: 30px 20px;
+    }
+
+    .skills-section h2 {
+        font-size: 28px;
+    }
+
+    .skills-section .core-skills {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .skills-section .cells {
+        gap: 10px;
+    }
+
+    .skills-section .cells .cell {
+        padding: 10px 16px;
+        font-size: 14px;
     }
 }
 
@@ -441,25 +535,163 @@ nav .right a span {
 
     .hero-section {
         padding: 0 20px;
+        gap: 30px;
     }
 
     .hero-section .text h2 {
-        font-size: 30px;
+        font-size: 28px;
+    }
+
+    .hero-section .headshot img {
+        width: 240px;
+        height: 240px;
     }
 
     .skills-section {
-        padding: 0 20px;
+        padding: 25px 15px;
+        margin-bottom: 60px;
+    }
+
+    .skills-section h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .skills-section .text {
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .skills-section .core-skills {
+        padding: 18px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+    }
+
+    .skills-section .core-skills h4 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        letter-spacing: 0.03em;
+    }
+
+    .skills-section .cells {
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    .skills-section .cells .cell {
+        padding: 10px 14px;
+        font-size: 13px;
+        flex: 0 1 calc(50% - 8px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .skills-section .cells .cell span {
-        font-size: 16px;
+        font-size: 13px;
     }
 
     .project-section {
-        padding: 0 20px;
+        padding: 30px 15px;
+        margin-bottom: 60px;
+    }
+
+    .project-section h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+
+    .project-section .cells {
+        gap: 16px;
+    }
+
+    .project-section .cells .cell {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .project-section .cells .cell .project-title {
+        font-size: 16px;
+    }
+
+    .project-section .cells .cell .project-description {
+        font-size: 13px;
+    }
+
+    .project-section .cells .cell .project-link {
+        font-size: 13px;
+        padding: 9px 14px;
     }
 
     .contact-section {
-        padding: 0 20px;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-section h2 {
+        font-size: 24px;
+    }
+
+    .skills-section .core-skills {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .skills-section .core-skills h4 {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .skills-section .cells .cell {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 0 1 calc(50% - 6px);
+    }
+
+    .skills-section .cells .cell span {
+        font-size: 12px;
+    }
+
+    .project-section {
+        padding: 25px 12px;
+    }
+
+    .project-section h2 {
+        font-size: 24px;
+    }
+
+    .project-section .cells {
+        gap: 12px;
+    }
+
+    .project-section .cells .cell {
+        padding: 18px;
+    }
+
+    .project-section .cells .cell .project-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .project-section .cells .cell .project-description {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .project-section .cells .cell .project-link {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .hero-section .text h2 {
+        font-size: 24px;
+    }
+
+    .hero-section .headshot img {
+        width: 200px;
+        height: 200px;
     }
 }
