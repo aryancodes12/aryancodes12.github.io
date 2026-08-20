@@ -85,6 +85,10 @@ nav .right a span {
     transition: .1s;
 }
 
+.hero-section .text .links #resume-hero {
+    display: none;
+}
+
 .hero-section .text .links a:hover {
     color: var(--text-color);
     border: 2px solid var(--text-color);
@@ -299,6 +303,10 @@ nav .right a span {
 @media (max-width: 642px) {
     nav .right #resume {
         display: none;
+    }
+    
+    .hero-section .text .links #resume-hero {
+        display: inline;
     }
 }
 
