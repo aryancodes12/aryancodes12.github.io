@@ -81,7 +81,7 @@ window.Stars = (function () {
       scene.add(far);
 
       // Layer 2 — mid-field white stars
-      const mid = makeLayer(1400, 1.0, 30, 80, 0xffffff, 0.85);
+      const mid = makeLayer(1400, 0.6, 30, 80, 0xffffff, 0.85);
       scene.add(mid);
 
       // Layer 3 — close bright warm stars
