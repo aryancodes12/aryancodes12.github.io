@@ -266,12 +266,18 @@ html, body {
   font-size: 0.72rem; color: var(--text-secondary);
   letter-spacing: 0.04em; white-space: nowrap;
   animation: hint-float 3s ease-in-out infinite;
+  will-change: transform, opacity;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-#explore-hint.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(10px); }
+#explore-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transform: translate3d(-50%, 10px, 0);
+}
 @keyframes hint-float {
-  0%,100% { bottom: 2rem; }
-  50%      { bottom: 2.5rem; }
+  0%,100% { transform: translate3d(-50%, 0, 0); }
+  50%      { transform: translate3d(-50%, -8px, 0); }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -762,6 +768,12 @@ html, body {
 }
 
 @media (max-width: 420px) {
-  #explore-hint span:not(.hint-icon) { display: none; }
+  #explore-hint {
+    width: calc(100vw - 2rem);
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.45;
+  }
   .about-bio { font-size: 0.82rem; }
 }
