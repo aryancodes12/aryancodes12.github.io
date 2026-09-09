@@ -3,306 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <title>Aryan Gupta | Data Science &amp; AI Portfolio</title>
-    <meta name="description" content="Portfolio of Aryan Gupta, B.Sc. Data Science &amp; AI student. Specializing in Python, Machine Learning, Data Analytics, and Backend Development.">
+    <title>Aryan Gupta | Data Science & AI Portfolio</title>
+    <meta name="description" content="Portfolio of Aryan Gupta, B.Sc. Data Science & AI student. Specializing in Python, Machine Learning, Data Analytics, and Backend Development.">
     <meta name="author" content="Aryan Gupta">
-    <meta name="theme-color" content="#4a76ee">
+    <meta name="theme-color" content="#050510">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="asset/favicon.svg">
 
-    <!-- Open Graph / Social Sharing -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Aryan Gupta | Data Science &amp; AI Portfolio">
-    <meta property="og:description" content="Explore machine learning models, data science projects, and technical skills by Aryan Gupta.">
+    <meta property="og:title" content="Aryan Gupta | Data Science & AI Portfolio">
+    <meta property="og:description" content="Explore machine learning models, data science projects, and technical skills by Aryan Gupta in an interactive 3D universe.">
     <meta property="og:image" content="asset/aryan.webp">
     <meta property="og:url" content="https://aryancodes12.github.io/">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Aryan Gupta | Data Science &amp; AI Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aryan Gupta | Data Science & AI Portfolio">
     <meta name="twitter:description" content="Explore machine learning models, data science projects, and technical skills by Aryan Gupta.">
     <meta name="twitter:image" content="asset/aryan.webp">
+
+    <!-- Google Fonts: Orbitron (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <nav>
-        <div class = "left">
-            <a href="index.html">
-                <span>Aryan Gupta</span>
-            </a>
-        </div>
-        <div class = "right">
-            <a href="https://github.com/aryancodes12" id = "github" target="_blank" rel="noopener noreferrer" >
-                <span>Github</span>
-            </a>
-            <a href="https://www.linkedin.com/in/aryan-rajesh-gupta-386449360/" id="linkedin" target="_blank" rel="noopener noreferrer">
-                <span>LinkedIn</span>
-            </a>
-            <a href="mailto:aryansynthh@gmail.com" id = "email">
-                <span>Email</span>
-            </a>
 
-            <a href="asset/Aryan_Rajesh_Gupta_Resume.pdf" id = "resume" download="Aryan_Rajesh_Gupta_Resume" class="resume-btn">
-                <span>Download Resume</span>
-            </a>
+<!-- ══════════════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════════════ -->
+<div id="loading-screen">
+    <div class="loader-bg-stars" id="loader-bg-stars"></div>
+    <div class="loader-content">
+        <div class="loader-logo">
+            <span class="logo-a">A</span><span class="logo-g">G</span>
         </div>
+        <p class="loader-name">Aryan Gupta</p>
+        <p class="loader-sub">Data Science &amp; AI</p>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+            <p class="loader-status" id="loader-status">Initializing universe…</p>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THREE.JS CANVAS
+══════════════════════════════════════════ -->
+<canvas id="universe-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════
+     TOOLTIP
+══════════════════════════════════════════ -->
+<div id="tooltip" role="tooltip"></div>
+
+<!-- ══════════════════════════════════════════
+     HUD — TOP NAVIGATION
+══════════════════════════════════════════ -->
+<header id="hud" aria-label="Portfolio navigation">
+    <div id="hud-brand">
+        <button id="hud-logo" aria-label="Return to overview">AG</button>
+        <div class="brand-info" aria-hidden="true">
+            <span class="brand-name">Aryan Gupta</span>
+            <span class="brand-title">Data Science &amp; AI</span>
+        </div>
+    </div>
+
+    <nav id="hud-nav" aria-label="Sections">
+        <button class="hud-nav-btn" data-panel="about"      id="nav-about">About</button>
+        <button class="hud-nav-btn" data-panel="skills"     id="nav-skills">Skills</button>
+        <button class="hud-nav-btn" data-panel="projects"   id="nav-projects">Projects</button>
+        <button class="hud-nav-btn" data-panel="experience" id="nav-experience">Experience</button>
+        <button class="hud-nav-btn" data-panel="education"  id="nav-education">Education</button>
+        <button class="hud-nav-btn" data-panel="contact"    id="nav-contact">Contact</button>
     </nav>
-        
-    <main>
-        <section class = "hero-section">
-            <div class="text">
-                <h2>Hi, I'm Aryan Gupta</h2>
-                <p>
-                    I’m Aryan Gupta, a B.Sc. Data Science & AI student passionate about technology, artificial intelligence, and problem-solving. I enjoy working with Python, data analysis, machine learning, and backend development. I’m constantly learning new technologies and building practical projects to strengthen my skills. My goal is to create useful, innovative solutions while growing as a developer and data professional.
-                </p>
-                
-                <div class="links">
-                    <a href="#skills">
-                        <span>Skills</span>
-                    </a>
-                    <a href="#projects">
-                        <span>Projects</span>
-                    </a>
-                    <a href="#experience">
-                        <span>Experience</span>
-                    </a>
-                    <a href="#education">
-                        <span>Education</span>
-                    </a>
-                    <a href="asset/Aryan_Rajesh_Gupta_Resume.pdf" id = "resume-hero" download="Aryan_Rajesh_Gupta_Resume" class="resume-btn">
-                        <span>Download Resume</span>
-                    </a>
+
+    <div id="hud-actions">
+        <a href="asset/Aryan_Rajesh_Gupta_Resume.pdf" download="Aryan_Rajesh_Gupta_Resume"
+           class="resume-download-btn" id="resume-btn">↓ Resume</a>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     EXPLORE HINT (fades after 6 s)
+══════════════════════════════════════════ -->
+<div id="explore-hint" aria-hidden="true">
+    <span class="hint-icon">🌌</span>
+    <span>Drag to orbit · Scroll to zoom · Click orbs to explore</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PANEL OVERLAY
+══════════════════════════════════════════ -->
+<div id="panel-overlay" aria-hidden="true">
+    <div id="panel-backdrop"></div>
+
+    <button id="panel-close-btn" aria-label="Close panel">✕</button>
+
+    <!-- ── ABOUT ── -->
+    <section id="panel-about" class="panel" aria-label="About Aryan Gupta">
+        <div class="panel-scroll">
+            <div class="about-hero">
+                <div class="about-photo-wrap">
+                    <img src="asset/aryan.webp"
+                         alt="Aryan Gupta – Data Science & AI Student"
+                         class="about-photo" id="about-photo"
+                         width="160" height="160" loading="eager">
+                    <div class="photo-orbit-ring ring-1"></div>
+                    <div class="photo-orbit-ring ring-2"></div>
+                    <div class="photo-glow"></div>
                 </div>
-            </div>
-            <div class = 'headshot'>
-                <img src="asset/aryan.webp" alt="Aryan Gupta - Data Science &amp; AI Student" width="360" height="360" fetchpriority="high">
-            </div>
-        </section>
-
-        <section id = "skills" class="skills-section">
-            <h2>Skills</h2>
-            <div class="text">
-                 My technical interests span Data Science, Artificial Intelligence, software development, and problem-solving. I work with programming, data analysis, machine learning, databases, and web technologies to build practical projects. Alongside technical skills, I focus on logical thinking, algorithmic problem-solving, and continuously learning new tools and technologies. I enjoy experimenting with different technologies and applying what I learn to real-world problems.
-
-            </div>
-
-            <div class = "core-skills">
-                <h4>Core</h4>
-            <div class="cells">
-                <div class="cell">
-                    <span>Python</span>
-                </div>
-
-                <div class="cell">
-                    <span>MySQL</span>
-                </div>
-
-                <div class="cell">
-                    <span>R</span>
-                </div>
-
-                <div class="cell">
-                    <span>Git</span>
-                </div>
-
-                <div class="cell">
-                    <span>GitHub</span>
-                </div>
-
-                <div class="cell">
-                    <span>HTML</span>
-                </div>
-
-                <div class="cell">
-                    <span>CSS</span>
-                </div>
-            </div>
-            </div>
-            
-            <div class = "core-skills">
-                <h4>Data Science</h4>
-            <div class="cells">
-                <div class="cell">
-                    <span>Pandas</span>
-                </div>
-
-                <div class="cell">
-                    <span>Numpy</span>
-                </div>
-
-                <div class="cell">
-                    <span>Matplotlib</span>
-                </div>
-
-                <div class="cell">
-                    <span>Seaborn</span>
-                </div>
-
-                <div class="cell">
-                    <span>EDA</span>
-                </div>
-
-                <div class="cell">
-                    <span>Data Cleaning</span>
-                </div>
-
-                <div class="cell">
-                    <span>Statistics</span>
+                <div class="about-info">
+                    <h1 class="about-name">Aryan Gupta</h1>
+                    <p class="about-title-text">B.Sc. Data Science &amp; AI Student</p>
+                    <p class="about-bio">
+                        I'm Aryan Gupta, a B.Sc. Data Science &amp; AI student passionate about
+                        technology, artificial intelligence, and problem-solving. I enjoy working
+                        with Python, data analysis, machine learning, and backend development.
+                        My goal is to create useful, innovative solutions while growing as a
+                        developer and data professional.
+                    </p>
+                    <div class="about-links">
+                        <a href="https://github.com/aryancodes12" class="social-pill github"
+                           target="_blank" rel="noopener noreferrer" id="about-github">GitHub</a>
+                        <a href="https://www.linkedin.com/in/aryan-rajesh-gupta-386449360/"
+                           class="social-pill linkedin" target="_blank" rel="noopener noreferrer"
+                           id="about-linkedin">LinkedIn</a>
+                        <a href="mailto:aryansynthh@gmail.com" class="social-pill email"
+                           id="about-email">Email</a>
+                        <a href="asset/Aryan_Rajesh_Gupta_Resume.pdf"
+                           download="Aryan_Rajesh_Gupta_Resume"
+                           class="social-pill resume" id="about-resume">↓ Resume</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-            <div class = "core-skills">
-                <h4>Currently Learning</h4>
-            <div class="cells">
-                <div class="cell">
-                    <span>DSA</span>
+    <!-- ── SKILLS ── -->
+    <section id="panel-skills" class="panel" aria-label="Skills">
+        <div class="panel-scroll">
+            <h2 class="panel-title">Skills <span class="panel-title-accent">&amp; Technologies</span></h2>
+            <p class="panel-subtitle">My technical universe spans Data Science, AI, and software development</p>
+
+            <div class="skills-galaxy">
+                <div class="skill-cluster" data-cluster="core">
+                    <h3 class="cluster-label">⬡ Core</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">MySQL</span>
+                        <span class="skill-pill">R</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">GitHub</span>
+                        <span class="skill-pill">HTML</span>
+                        <span class="skill-pill">CSS</span>
+                    </div>
                 </div>
-
-                <div class="cell">
-                    <span>Scikit-Learn</span>
+                <div class="skill-cluster" data-cluster="datascience">
+                    <h3 class="cluster-label">⬡ Data Science</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Pandas</span>
+                        <span class="skill-pill">NumPy</span>
+                        <span class="skill-pill">Matplotlib</span>
+                        <span class="skill-pill">Seaborn</span>
+                        <span class="skill-pill">EDA</span>
+                        <span class="skill-pill">Data Cleaning</span>
+                        <span class="skill-pill">Statistics</span>
+                    </div>
                 </div>
-
-                <div class="cell">
-                    <span>Machine Learning</span>
+                <div class="skill-cluster" data-cluster="learning">
+                    <h3 class="cluster-label">⬡ Currently Learning</h3>
+                    <div class="skill-pills">
+                        <span class="skill-pill learning">DSA</span>
+                        <span class="skill-pill learning">Scikit-Learn</span>
+                        <span class="skill-pill learning">Machine Learning</span>
+                    </div>
                 </div>
             </div>
         </div>
-            
-        </section>
+    </section>
 
-        <section id="projects" class="project-section">
-            <h2>Projects</h2>
-                
-            <div class = "cells">
-                <div class="cell">
-                    <span class="project-title">Gearbox Failure Prediction</span>
-                    <p class="project-description">Machine learning model that predicts potential gearbox failure based on load, temperature, vibration, and oil level.<br>
-                    Tech: Python, Pandas, Scikit-learn, joblib, streamlit</p>
-                    <a href="https://gearbox-failure-prediction-model.streamlit.app/" class="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                </div>
+    <!-- ── PROJECTS ── -->
+    <section id="panel-projects" class="panel" aria-label="Projects">
+        <div class="panel-scroll">
+            <h2 class="panel-title">Projects <span class="panel-title-accent">&amp; Missions</span></h2>
+            <p class="panel-subtitle">Each project is a planet orbiting in the universe — click them in space too!</p>
 
-                <div class="cell">
-                    <span class="project-title">Authentication System</span>
-                    <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore sunt, ut accusantium expedita distinctio, soluta, omnis veniam consectetur quae earum.</p>
-                    <a href="https://github.com/aryancodes12/authentication-system" class="project-link" target="_blank" rel="noopener noreferrer">View Repository</a>
-                </div>
+            <div class="projects-list">
+                <article class="project-card featured" id="project-gearbox">
+                    <div class="project-card-top">
+                        <span class="project-badge">⭐ Featured</span>
+                    </div>
+                    <h3 class="project-name">Gearbox Failure Prediction</h3>
+                    <p class="project-desc">Machine learning model that predicts potential gearbox failure based on load, temperature, vibration, and oil level.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Streamlit</span>
+                    </div>
+                    <a href="https://gearbox-failure-prediction-model.streamlit.app/"
+                       class="project-link-btn" target="_blank" rel="noopener noreferrer"
+                       id="link-gearbox">Live Demo ↗</a>
+                </article>
 
-                <div class="cell">
-                    <span class="project-title">Synthalytics</span>
-                    <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore sunt, ut accusantium expedita distinctio, soluta, omnis veniam consectetur quae earum.</p>
-                    <a href="https://github.com/aryancodes12/Synthalytics" class="project-link" target="_blank" rel="noopener noreferrer">View Repository</a>
-                </div>
+                <article class="project-card" id="project-auth">
+                    <h3 class="project-name">Authentication System</h3>
+                    <p class="project-desc">A secure authentication system built with Python featuring login, registration, password hashing, and session management.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Security</span>
+                    </div>
+                    <a href="https://github.com/aryancodes12/authentication-system"
+                       class="project-link-btn" target="_blank" rel="noopener noreferrer"
+                       id="link-auth">GitHub ↗</a>
+                </article>
 
-                <div class="cell">
-                    <span class="project-title">Task Manager CLI</span>
-                    <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore sunt, ut accusantium expedita distinctio, soluta, omnis veniam consectetur quae earum.</p>
-                    <a href="https://github.com/aryancodes12/Task-manager-CLI" class="project-link" target="_blank" rel="noopener noreferrer">View Repository</a>
-                </div>
+                <article class="project-card" id="project-synthalytics">
+                    <h3 class="project-name">Synthalytics</h3>
+                    <p class="project-desc">A data analytics tool for synthesizing and visualizing complex datasets with intuitive dashboards and clear insights.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                    <a href="https://github.com/aryancodes12/Synthalytics"
+                       class="project-link-btn" target="_blank" rel="noopener noreferrer"
+                       id="link-synthalytics">GitHub ↗</a>
+                </article>
 
-                <div class="cell">
-                    <span class="project-title">PyMYSQL</span>
-                    <p class="project-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore sunt, ut accusatium expedita distinctio, soluta, omnis veniam consectetur quae earum.</p>
-                    <a href="https://github.com/aryancodes12/PyMySQL-Python-Practice" class="project-link" target="_blank" rel="noopener noreferrer">View Repository</a>
-                </div>
+                <article class="project-card" id="project-taskcli">
+                    <h3 class="project-name">Task Manager CLI</h3>
+                    <p class="project-desc">A command-line task manager built in Python with full CRUD operations, priority setting, and persistent JSON storage.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">CLI</span>
+                        <span class="tech-tag">JSON</span>
+                    </div>
+                    <a href="https://github.com/aryancodes12/Task-manager-CLI"
+                       class="project-link-btn" target="_blank" rel="noopener noreferrer"
+                       id="link-taskcli">GitHub ↗</a>
+                </article>
+
+                <article class="project-card" id="project-pymysql">
+                    <h3 class="project-name">PyMySQL Practice</h3>
+                    <p class="project-desc">Python-MySQL integration project covering CRUD operations, stored procedures, and database management exercises.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Database</span>
+                    </div>
+                    <a href="https://github.com/aryancodes12/PyMySQL-Python-Practice"
+                       class="project-link-btn" target="_blank" rel="noopener noreferrer"
+                       id="link-pymysql">GitHub ↗</a>
+                </article>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="experience" class="experience-section">
-            <h2>Experience</h2>
+    <!-- ── EXPERIENCE ── -->
+    <section id="panel-experience" class="panel" aria-label="Experience">
+        <div class="panel-scroll">
+            <h2 class="panel-title">Experience <span class="panel-title-accent">&amp; Journey</span></h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>IT Intern</h3>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-body">
+                        <div class="timeline-header">
+                            <h3 class="timeline-role">IT Intern</h3>
+                            <span class="timeline-date">August 2026</span>
+                        </div>
                         <p class="timeline-company">Awdiz Institute</p>
-                        <p class="timeline-date">August 2026 - August 2026</p>
-                        <p class="timeline-description">Worked on data analysis and visualization projects. Implemented machine learning models for predictive analytics. Collaborated with cross-functional teams to deliver insights for business decisions.</p>
+                        <p class="timeline-desc">Worked on data analysis and visualization projects. Implemented machine learning models for predictive analytics. Collaborated with cross-functional teams to deliver insights for business decisions.</p>
                     </div>
                 </div>
-
-                <!-- <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Python Developer</h3>
-                        <p class="timeline-company">Code Solutions LLC</p>
-                        <p class="timeline-date">January 2024 - May 2024</p>
-                        <p class="timeline-description">Developed backend solutions using Python and MySQL. Created RESTful APIs and optimized database queries. Participated in code reviews and contributed to technical documentation.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Freelance Developer</h3>
-                        <p class="timeline-company">Self-employed</p>
-                        <p class="timeline-date">2023 - Present</p>
-                        <p class="timeline-description">Building web and data science projects for various clients. Developed full-stack applications using Python, HTML, CSS, and JavaScript. Managed project timelines and client communications.</p>
-                    </div>
-                </div> -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="education" class="education-section">
-            <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <!-- <div class="education-icon">🎓</div> -->
-                    <h3>B.Sc. Data Science & AI</h3>
-                    <p class="education-institute">Bhavan's College</p>
-                    <p class="education-date">2025 - 2028 (Expected)</p>
-                    <p class="education-description">Pursuing a degree in Data Science and Artificial Intelligence with focus on machine learning, data analytics, and software development.</p>
+    <!-- ── EDUCATION ── -->
+    <section id="panel-education" class="panel" aria-label="Education">
+        <div class="panel-scroll">
+            <h2 class="panel-title">Education <span class="panel-title-accent">&amp; Origins</span></h2>
+            <div class="education-cards">
+                <div class="edu-card" id="edu-bsc">
+                    <div class="edu-icon">🎓</div>
+                    <h3 class="edu-degree">B.Sc. Data Science &amp; AI</h3>
+                    <p class="edu-institution">Bhavan's College</p>
+                    <p class="edu-period">2025 – 2028 (Expected)</p>
+                    <p class="edu-desc">Pursuing a degree in Data Science and Artificial Intelligence with focus on machine learning, data analytics, and software development.</p>
                 </div>
-
-                <div class="education-card">
-                    <!-- <div class="education-icon">📜</div> -->
-                    <h3>Junior College</h3>
-                    <p class="education-institute">R.D. & S.H. National College</p>
-                    <p class="education-date">2023 - 2025</p>
-                    <p class="education-description">Completed my junior college education with a focus on science and mathematics.</p>
+                <div class="edu-card" id="edu-jc">
+                    <div class="edu-icon">📜</div>
+                    <h3 class="edu-degree">Junior College</h3>
+                    <p class="edu-institution">R.D. &amp; S.H. National College</p>
+                    <p class="edu-period">2023 – 2025</p>
+                    <p class="edu-desc">Completed junior college education with a focus on science and mathematics.</p>
                 </div>
-
-                <!-- <div class="education-card">
-                        <div class="education-icon"></div>
-                        <h3>Data Analysis & Visualization</h3>
-                    <p class="education-institute">Online Learning Platform</p>
-                    <p class="education-date">2023</p>
-                    <p class="education-description">Learned data analysis using Pandas, NumPy, and created interactive visualizations with Matplotlib and Seaborn.</p>
-                </div> -->
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-text">
-                <h3>Let's Connect</h3>
-                <p>Feel free to reach out through any of these platforms</p>
-            </div>
-            <div class="footer-links">
-                <a href="https://github.com/aryancodes12" class="footer-link" target="_blank" rel="noopener noreferrer">
-                    <!-- 
-                     -->
-                    <span class="link-text">GitHub</span>
+    <!-- ── CONTACT ── -->
+    <section id="panel-contact" class="panel" aria-label="Contact">
+        <div class="panel-scroll">
+            <h2 class="panel-title">Contact <span class="panel-title-accent">&amp; Connect</span></h2>
+            <p class="panel-subtitle">Send a signal across the universe — I'll receive it</p>
+            <div class="contact-grid">
+                <a href="mailto:aryansynthh@gmail.com" class="contact-card" id="contact-email">
+                    <div class="contact-icon">✉️</div>
+                    <h3 class="contact-label">Email</h3>
+                    <p class="contact-value">aryansynthh@gmail.com</p>
                 </a>
-                <a href="https://www.linkedin.com/in/aryan-rajesh-gupta-386449360/" class="footer-link" target="_blank" rel="noopener noreferrer">
-                    <!-- <span class="link-icon">💼</span> -->
-                    <span class="link-text">LinkedIn</span>
+                <a href="https://github.com/aryancodes12" class="contact-card"
+                   target="_blank" rel="noopener noreferrer" id="contact-github">
+                    <div class="contact-icon">⚡</div>
+                    <h3 class="contact-label">GitHub</h3>
+                    <p class="contact-value">@aryancodes12</p>
                 </a>
-                <a href="mailto:aryansynthh@gmail.com" class="footer-link">
-                    <!-- <span class="link-icon">✉️</span> -->
-                    <span class="link-text">Email</span>
+                <a href="https://www.linkedin.com/in/aryan-rajesh-gupta-386449360/"
+                   class="contact-card" target="_blank" rel="noopener noreferrer"
+                   id="contact-linkedin">
+                    <div class="contact-icon">💼</div>
+                    <h3 class="contact-label">LinkedIn</h3>
+                    <p class="contact-value">Aryan Rajesh Gupta</p>
+                </a>
+                <a href="asset/Aryan_Rajesh_Gupta_Resume.pdf"
+                   download="Aryan_Rajesh_Gupta_Resume"
+                   class="contact-card" id="contact-resume">
+                    <div class="contact-icon">📄</div>
+                    <h3 class="contact-label">Resume</h3>
+                    <p class="contact-value">Download PDF</p>
                 </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Aryan Gupta. All rights reserved.</p>
+    </section>
+</div><!-- /#panel-overlay -->
+
+<!-- ══════════════════════════════════════════
+     NO-SCRIPT FALLBACK
+══════════════════════════════════════════ -->
+<noscript>
+    <div style="position:fixed;inset:0;background:#050510;color:#e8eaf6;display:flex;align-items:center;justify-content:center;font-family:sans-serif;text-align:center;padding:2rem;">
+        <div>
+            <h1 style="margin-bottom:1rem;">Aryan Gupta — Data Science &amp; AI</h1>
+            <p>Please enable JavaScript to experience the interactive 3D universe portfolio.</p>
+            <p style="margin-top:1rem;">
+                Contact: <a href="mailto:aryansynthh@gmail.com" style="color:#4a90e2">aryansynthh@gmail.com</a>
+            </p>
         </div>
-    </footer>
+    </div>
+</noscript>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS  (order matters)
+══════════════════════════════════════════ -->
+<!-- Three.js r128 — supports global THREE object -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- GSAP 3 for smooth tweens -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<!-- Portfolio modules -->
+<script src="js/data.js"></script>
+<script src="js/universe.js"></script>
+<script src="js/stars.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/planets.js"></script>
+<script src="js/constellations.js"></script>
+<script src="js/camera.js"></script>
+<script src="js/ui.js"></script>
 </body>
 </html>
