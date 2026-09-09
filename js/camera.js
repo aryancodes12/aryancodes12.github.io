@@ -161,8 +161,24 @@ window.Camera = (function () {
 
   // ── Touch events ──────────────────────────────────────────
   let touchStart = null;
+  let pinchStartDistance = null;
+  let pinchStartRadius = null;
+
+  function getTouchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
 
   function onTouchStart(e) {
+    if (e.touches.length === 2) {
+      cam.isDragging = false;
+      touchStart = null;
+      pinchStartDistance = getTouchDistance(e.touches);
+      pinchStartRadius = cam.tRadius;
+      return;
+    }
+
     if (e.touches.length === 1) {
       touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       cam.isDragging = true;
@@ -173,6 +189,15 @@ window.Camera = (function () {
   }
 
   function onTouchMove(e) {
+    if (e.touches.length === 2 && pinchStartDistance !== null) {
+      e.preventDefault();
+      const distanceChange = getTouchDistance(e.touches) - pinchStartDistance;
+      cam.tRadius = Math.max(RAD_MIN, Math.min(RAD_MAX,
+        pinchStartRadius - distanceChange * 0.04
+      ));
+      return;
+    }
+
     if (e.touches.length !== 1 || !cam.isDragging) return;
     e.preventDefault();
     const t  = e.touches[0];
@@ -186,6 +211,13 @@ window.Camera = (function () {
   }
 
   function onTouchEnd(e) {
+    if (e.touches.length < 2) {
+      pinchStartDistance = null;
+      pinchStartRadius = null;
+    }
+
+    if (e.touches.length > 0) return;
+
     cam.isDragging = false;
     if (!cam.hasDragged && touchStart) {
       const ndc  = getNDC(touchStart.x, touchStart.y);
