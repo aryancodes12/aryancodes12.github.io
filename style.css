@@ -564,6 +564,17 @@ html, body {
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(74,144,226,.2);
 }
+
+.skill-pill.tools {
+  background: rgba(34,197,94,.07);
+  border-color: rgba(34,197,94,.18);
+}
+.skill-pill.tools:hover {
+  background: rgba(34,197,94,.15);
+  border-color: rgba(34,197,94,.4);
+  box-shadow: 0 4px 14px rgba(34,197,94,.2);
+}
+
 .skill-pill.learning {
   background: rgba(34,197,94,.07);
   border-color: rgba(34,197,94,.18);
