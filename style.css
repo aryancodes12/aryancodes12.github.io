@@ -232,6 +232,25 @@ html, body {
 .hud-nav-btn:hover { color: var(--text-primary); background: rgba(255,255,255,.05); }
 .hud-nav-btn.active { color: var(--blue); background: rgba(74,144,226,.1); }
 
+#hud-actions { display: flex; align-items: center; gap: 0.55rem; }
+.music-toggle {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid rgba(20,184,166,.35);
+  border-radius: 8px;
+  background: rgba(20,184,166,.06);
+  color: var(--text-secondary); cursor: pointer;
+  font-family: var(--font-body); font-size: 0.72rem;
+  transition: all 0.25s ease;
+}
+.music-toggle:hover, .music-toggle[aria-pressed="true"] {
+  color: #5eead4; border-color: rgba(20,184,166,.7);
+  background: rgba(20,184,166,.14); box-shadow: 0 0 16px rgba(20,184,166,.2);
+}
+.music-icon { font-size: 1rem; line-height: 1; }
+.music-toggle[aria-pressed="true"] .music-icon { animation: music-pulse 1.2s ease-in-out infinite; }
+@keyframes music-pulse { 50% { transform: translateY(-2px); } }
+
 .resume-download-btn {
   display: inline-flex; align-items: center;
   padding: 0.42rem 0.9rem;
@@ -720,6 +739,42 @@ html, body {
 .edu-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════════════════════
+   CERTIFICATIONS PANEL
+═══════════════════════════════════════════════════════════ */
+.certification-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.certification-card {
+  display: flex; align-items: flex-start; gap: 0.9rem;
+  padding: 1.2rem;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(20,184,166,.26);
+  border-radius: 14px;
+}
+.certification-card-pending { box-shadow: inset 3px 0 0 #14b8a6; }
+.certification-mark {
+  display: grid; place-items: center; flex-shrink: 0;
+  width: 34px; height: 34px; border-radius: 50%;
+  color: #5eead4; background: rgba(20,184,166,.12);
+  font-size: 1rem;
+}
+.certification-status {
+  margin-bottom: 0.3rem; color: #5eead4;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.certification-name {
+  font-family: var(--font-display); font-size: 0.86rem;
+  color: var(--text-primary); margin-bottom: 0.45rem;
+}
+.certification-desc, .certification-note p {
+  color: var(--text-secondary); font-size: 0.78rem; line-height: 1.6;
+}
+.certification-note {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.8rem 1rem; border: 1px dashed var(--glass-border);
+  color: var(--text-muted); border-radius: 10px;
+}
+.certification-note span { color: #5eead4; font-size: 1.2rem; }
+
+/* ═══════════════════════════════════════════════════════════
    CONTACT PANEL
 ═══════════════════════════════════════════════════════════ */
 .contact-grid {
@@ -771,6 +826,7 @@ html, body {
   :root { --panel-w: 100vw; --hud-h: 54px; }
   #hud-nav { display: none; }
   .brand-info { display: none; }
+  .music-label { display: none; }
   #panel-close-btn {
     right: 1rem;
     top: calc(var(--hud-h) + 0.7rem);
