@@ -16,6 +16,8 @@ window.UI = (function () {
   ];
 
   let currentPanel = null;
+  let audioContext = null;
+  let musicNodes = null;
 
   // ── Loading screen ────────────────────────────────────────
   function generateLoaderStars() {
@@ -101,6 +103,8 @@ window.UI = (function () {
 
   // ── HUD wiring ────────────────────────────────────────────
   function wireHUD() {
+    document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+
     // Nav buttons → open panel + (optionally) focus camera
     document.querySelectorAll('.hud-nav-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -144,6 +148,42 @@ window.UI = (function () {
     const hint = document.getElementById('explore-hint');
     hint.style.opacity = '0'; // hidden until loader done
     setTimeout(() => hint.classList.add('hidden'), 8000);
+  }
+
+  // Create a small ambient loop locally so playback needs no external audio asset.
+  function toggleMusic() {
+    const button = document.getElementById('music-toggle');
+    const label = button.querySelector('.music-label');
+
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const master = audioContext.createGain();
+      master.gain.value = 0.035;
+      master.connect(audioContext.destination);
+
+      const oscillators = [
+        { frequency: 110, type: 'sine', detune: 0 },
+        { frequency: 164.81, type: 'sine', detune: -4 },
+        { frequency: 220, type: 'triangle', detune: 5 }
+      ].map(({ frequency, type, detune }) => {
+        const oscillator = audioContext.createOscillator();
+        oscillator.type = type;
+        oscillator.frequency.value = frequency;
+        oscillator.detune.value = detune;
+        oscillator.connect(master);
+        oscillator.start();
+        return oscillator;
+      });
+      musicNodes = { master, oscillators };
+    }
+
+    if (audioContext.state === 'suspended') audioContext.resume();
+    const isPlaying = button.getAttribute('aria-pressed') === 'true';
+    musicNodes.master.gain.cancelScheduledValues(audioContext.currentTime);
+    musicNodes.master.gain.linearRampToValueAtTime(isPlaying ? 0 : 0.035, audioContext.currentTime + 0.35);
+    button.setAttribute('aria-pressed', String(!isPlaying));
+    button.setAttribute('aria-label', isPlaying ? 'Enable ambient music' : 'Disable ambient music');
+    label.textContent = isPlaying ? 'Music off' : 'Music on';
   }
 
   // ── Tooltip helpers (public, used by camera.js) ───────────

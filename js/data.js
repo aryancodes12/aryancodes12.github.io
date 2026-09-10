@@ -16,14 +16,15 @@ window.UNIVERSE_DATA = {
     resume: "asset/Aryan_Rajesh_Gupta_Resume.pdf"
   },
 
-  // 6 Navigation nodes arranged in a circle of radius 5
+  // Navigation nodes arranged in a circle of radius 5
   nodes: [
-    { id: "about",      label: "About",      color: 0x4a90e2, glowColor: "#4a90e2", angle: 0,   radius: 5, y:  0.5  },
-    { id: "skills",     label: "Skills",     color: 0xa855f7, glowColor: "#a855f7", angle: 60,  radius: 5, y: -0.8  },
-    { id: "projects",   label: "Projects",   color: 0xf97316, glowColor: "#f97316", angle: 120, radius: 5, y:  1.0  },
-    { id: "experience", label: "Experience", color: 0xeab308, glowColor: "#eab308", angle: 180, radius: 5, y: -0.3  },
-    { id: "education",  label: "Education",  color: 0x22c55e, glowColor: "#22c55e", angle: 240, radius: 5, y:  0.7  },
-    { id: "contact",    label: "Contact",    color: 0xef4444, glowColor: "#ef4444", angle: 300, radius: 5, y: -0.5  }
+    { id: "about",          label: "About",          color: 0x4a90e2, glowColor: "#4a90e2", angle: 0,   radius: 5, y:  0.5  },
+    { id: "skills",         label: "Skills",         color: 0xa855f7, glowColor: "#a855f7", angle: 51,  radius: 5, y: -0.8  },
+    { id: "projects",       label: "Projects",       color: 0xf97316, glowColor: "#f97316", angle: 103, radius: 5, y:  1.0  },
+    { id: "experience",     label: "Experience",     color: 0xeab308, glowColor: "#eab308", angle: 154, radius: 5, y: -0.3  },
+    { id: "education",      label: "Education",      color: 0x22c55e, glowColor: "#22c55e", angle: 206, radius: 5, y:  0.7  },
+    { id: "certifications", label: "Certifications", color: 0x14b8a6, glowColor: "#14b8a6", angle: 257, radius: 5, y: -0.7  },
+    { id: "contact",        label: "Contact",        color: 0xef4444, glowColor: "#ef4444", angle: 309, radius: 5, y: -0.5  }
   ],
 
   // 5 Project planets — orbit the "Projects" node
